@@ -2,5 +2,7 @@
 
 
 interface IRequest {
-    //put your code here
+    
+	public function getBody();
+
 }
