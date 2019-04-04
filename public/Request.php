@@ -2,9 +2,10 @@
 
 include_once 'IRequest.php';
 
-class Request implements IRequest{
+class Request implements IRequest
+{
    
-   function __constuct()
+   function __construct()
    {
    	
    		$this->bootstrapSelf();
@@ -53,7 +54,7 @@ class Request implements IRequest{
    			
    			foreach($_POST as $key => $value)
    			{
-   				$body[$key] = filter_input(INPUT_POST, $value,FILTER_SANITIZE_SPECIAL_CHARS);
+   				$body[$key] = filter_input(INPUT_POST, $key,FILTER_SANITIZE_SPECIAL_CHARS);
    			}
    			
    			return $body;

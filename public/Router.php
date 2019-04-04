@@ -8,7 +8,7 @@ class Router {
 		"POST"
 	);
 
-	function __construct(IResquest $request)
+	function __construct(IRequest $request)
 	{
 		$this->request = $request;
 	}
@@ -44,7 +44,8 @@ class Router {
 	}
 	
 	private function defaultRequestHandler(){
-			
+		
+		echo "Error 404 {$this->formatRoute($this->request->requestUri)} Not Found";
 	    header("{$this->request->serverProtocol} 404 Not Found");
 
 	}
@@ -52,10 +53,10 @@ class Router {
 	function resolve()
 	{
 		
-		$methodDictionary = $this->{strtolower($this->request->requestMethod)};
-		$formatedRoute = $this->formatRoute($this->request->requestUri);
-		$method = $methodDictionary[$formatedRoute];
-		
+    	$methodDictionary = $this->{strtolower($this->request->requestMethod)};
+    	$formatedRoute = $this->formatRoute($this->request->requestUri);
+    	$method = $methodDictionary[$formatedRoute];
+
 		if(is_null($method)){
 			$this->defaultRequestHandler();
 			return;	
